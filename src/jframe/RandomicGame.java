@@ -1,3 +1,5 @@
+package jframe;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ public class RandomicGame extends JFrame {
 	private JTextField numberChoiceField;
 	private JButton verifyButton;
 	private JButton tryAgainButton;
+	private JLabel numberSubtitleLabel;
 
 	/**
 	 * Launch the application.
@@ -43,8 +46,11 @@ public class RandomicGame extends JFrame {
 	 * Create the frame.
 	 */
 	public RandomicGame() {
+		setTitle("Jogo do advinhe - by: Luis Eugênio");
+		JOptionPane.showMessageDialog(this, "Bem-vindo ao jogo! Escolha um número entre 1 e 10. Boa sorte!", "Bem-vindo", JOptionPane.INFORMATION_MESSAGE);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 342, 233);
+		setBounds(100, 100, 381, 233);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -56,7 +62,7 @@ public class RandomicGame extends JFrame {
 		numberTitleLabel.setBounds(53, 11, 230, 49);
 		contentPane.add(numberTitleLabel);
 		
-		JLabel numberSubtitleLabel = new JLabel("<html><h4>Digite o Número:</h4><html>");
+		numberSubtitleLabel = new JLabel("<html><h4>Digite o Número:</h4><html>");
 		numberSubtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		numberSubtitleLabel.setBounds(100, 58, 132, 27);
 		contentPane.add(numberSubtitleLabel);
@@ -66,9 +72,9 @@ public class RandomicGame extends JFrame {
 		contentPane.add(numberChoiceField);
 		numberChoiceField.setColumns(10);
 		
-		JButton verifyButton = new JButton("<html><h2><b>Arriscar</b></h2><html>");
+		verifyButton = new JButton("<html><h2><b>Arriscar</b></h2><html>");
 		verifyButton.setBounds(78, 142, 175, 35);
-		verifyButton.setVisible(true);
+		//verifyButton.setVisible(true);
 		contentPane.add(verifyButton);
 		
 		verifyButton.addActionListener(new ActionListener() {
@@ -77,8 +83,8 @@ public class RandomicGame extends JFrame {
 			}
 		});
 		
-		JButton tryAgainButton = new JButton("<html><h2><b>Tente Novamente</b></h2><html>");
-		tryAgainButton.setBounds(78, 142, 175, 35);
+		tryAgainButton = new JButton("<html><h2><b>Tente Novamente</b></h2><html>");
+		tryAgainButton.setBounds(78, 96, 180, 45);
 		tryAgainButton.setVisible(false);
 		contentPane.add(tryAgainButton);
 		
@@ -98,21 +104,23 @@ public class RandomicGame extends JFrame {
     		Random randomNumber = new Random();
     		String numberChoiced = numberChoiceField.getText();
     		
-    		int sortedNumber = randomNumber.nextInt(100);
+    		int sortedNumber = randomNumber.nextInt(10);
     		int convertedToIntNumber = Integer.parseInt(numberChoiced);
     		
             if (convertedToIntNumber != 0) {
             	if (sortedNumber != convertedToIntNumber) {
             		JOptionPane.showMessageDialog(this, "Não foi dessa vez :/", "Loose", JOptionPane.ERROR_MESSAGE);
-            		//numberChoiceField.setVisible(false);
+            		numberChoiceField.setVisible(false);
             		verifyButton.setVisible(false);
-            		//tryAgainButton.setVisible(true);
+            		tryAgainButton.setVisible(true);
+            		numberSubtitleLabel.setVisible(false);
             	}
             	else {
             		JOptionPane.showMessageDialog(this, "Parabéns, você ganhou!! :D", "Win!!", JOptionPane.INFORMATION_MESSAGE);
-            		//numberChoiceField.setVisible(false);
-            		//verifyButton.setVisible(false);
-            		//tryAgainButton.setVisible(true);
+            		numberChoiceField.setVisible(false);
+            		verifyButton.setVisible(false);
+            		tryAgainButton.setVisible(true);
+            		numberSubtitleLabel.setVisible(false);
             	}
 
             } else {

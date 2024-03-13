@@ -1,4 +1,4 @@
-package jframe;
+package jframe.Calculadora;
 
 import java.awt.EventQueue;
 
